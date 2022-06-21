@@ -19,14 +19,10 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try{
-      const newTask = await Task.create({
-        project_id: req.body.project_id,
-        task_notes: req.body.notes.trim(),
-        task_description: req.body.description,
-      })
+      const newTask = await Task.create(req.body)
       res.status(201).json({
         ...newTask,
-        task_completed: !!newTask.task_completed
+        task_completed: !!row.task_completed
       })
     } catch(err) {
       next(err)

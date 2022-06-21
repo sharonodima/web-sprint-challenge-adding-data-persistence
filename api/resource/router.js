@@ -14,10 +14,7 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
     try{
-      const newResource = await Resource.create({
-        resource_name: req.body.name.trim(),
-        resource_description: req.body.description,
-      })
+      const newResource = await Resource.create(req.body)
       res.status(201).json(newResource)
     } catch(err) {
       next(err)
